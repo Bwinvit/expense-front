@@ -1,4 +1,6 @@
 import { Menu } from "antd";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
     UserOutlined,
     LineChartOutlined,
@@ -6,6 +8,26 @@ import {
 } from "@ant-design/icons";
 
 const LeftMenu = ({ collapsed }) => {
+    const navigate = useNavigate();
+    const [current, setCurrent] = useState("1");
+
+    const onClick = (e) => {
+        switch (e.key) {
+            case "1":
+                navigate("/home");
+                break;
+            case "2":
+                navigate("/summary");
+                break;
+            case "3":
+                navigate("/profile");
+                break;
+            default:
+                break;
+        }
+        setCurrent(e.key);
+    };
+
     const getItem = (label, key, icon, children) => {
         return {
             label,
@@ -25,10 +47,11 @@ const LeftMenu = ({ collapsed }) => {
         <>
             <Menu
                 items={items}
-                defaultSelectedKeys={["1"]}
-                defaultOpenKeys={["sub1"]}
+                defaultSelectedKeys={[current]}
+                selectedKeys={[current]}
                 mode="inline"
                 inlineCollapsed={collapsed}
+                onClick={onClick}
                 style={{ backgroundColor: "#dcedf7", border: "none" }}
             />
         </>

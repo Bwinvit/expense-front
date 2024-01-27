@@ -13,6 +13,8 @@ import Home from "./Components/Home/Home";
 import LeftMenu from "./Components/Layout/Lefter/LeftMenu";
 import useScreenDimensions from "./utils/useScreenDimensions";
 import { useEffect, useState } from "react";
+import Summary from "./Components/Summary/Summary";
+import Profile from "./Components/Profile/Profile";
 
 const MainContent = styled.div`
     font-family: ${(props) => props.theme.fonts.primary};
@@ -76,7 +78,9 @@ const AppRouter = () => {
                     <Routes>
                         <Route exact path="/guest" element={<>Guest</>} />
                         <Route element={<PrivateRoute />}>
-                            <Route exact path="/home" element={<Home />} />
+                            <Route path="/home" element={<Home />} />
+                            <Route path="/summary" element={<Summary />} />
+                            <Route path="/profile" element={<Profile />} />
                         </Route>
                     </Routes>
                 </Container>
